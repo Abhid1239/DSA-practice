@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node"
+    "start": "ts-node",
+    "test": "node --loader ts-node/esm ./Patterns/patterns.ts",
+    "test2": "node --loader ts-node/esm ./basicMath/basic.ts",
+    "test3": "node --loader ts-node/esm ./sort/sort.ts"
   },
   "devDependencies": {
+    "@types/node": "^24.3.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.0"
   }
