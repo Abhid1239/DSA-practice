@@ -201,3 +201,242 @@ function longestSubarray2(arr, k) {
 }
 console.log(longestSubarray2([10, 5, 2, 7, 1, 9], 15));
 console.log(Infinity, "a".charCodeAt(0), "z".charCodeAt(), 122 - 97);
+
+console.log(Math.min(...[1, 2, 3]));
+let a = 1;
+let b = ++a;
+console.log(a, b);
+console.log("a".slice(0, 1));
+console.log("a".slice(0, 0));
+console.log("ab".slice(0, 1));
+console.log("a".slice(0, 0));
+
+function fractionalKnapsack(val, wt, cap) {
+  let arr = val.map((v, i) => [v, wt[i]]);
+  arr.sort((a, b) => {
+    let cA = a[0] / a[1];
+    let cB = b[0] / b[1];
+    if (cB - cA) {
+      return +1;
+    } else {
+      return -1;
+    }
+  });
+  console.log(arr);
+  let i = 0,
+    currCap = cap,
+    res = 0;
+  while (i < arr.length) {
+    if (arr[i][1] < currCap) {
+      res += arr[i][0];
+      currCap -= arr[i][1];
+    } else {
+      res += (arr[i][0] / arr[i][1]) * currCap;
+      break;
+    }
+    i++;
+  }
+  return res;
+}
+console.log(fractionalKnapsack([60, 100, 120], [10, 20, 30], 50));
+
+function findPlatform(a, d) {
+  a = a.map((a) => [a, "a"]);
+  d = d.map((d) => [d, "d"]);
+  let t = [...a, ...d].sort((a, b) => a[0] - b[0]);
+
+  return t.reduce((a, t) => (a + t[1] == "d" ? -1 : +1), 0);
+}
+
+console.log(
+  findPlatform(
+    ["0900", "0940", "0950", "1100", "1500", "1800"],
+    ["0910", "1200", "1120", "1130", "1900", "2000"]
+  )
+);
+
+let abcd = { A: 1, B: 2 };
+console.log(Object.entries(abcd).length);
+let c = "ABCAD".split("");
+c = c.map((c) => c.charCodeAt(0) - "A".charCodeAt(0));
+console.log(c);
+
+function characterReplacement(s, k) {
+  let l = 0,
+    r = 0,
+    hm = {},
+    sum = 0,
+    mFreq = 0,
+    pNum = -Infinity;
+  s = s
+    .split("")
+    .map((c) => c.charCodeAt(0) - "A".charCodeAt(0))
+    .join("");
+  while (r < s.length) {
+    hm[s[r]] = (hm[s[r]] || 0) + 1;
+    mFreq = Math.max(hm[s[r]], mFreq);
+    pNum = (hm[s[pNum]] || 0) == mFreq ? pNum : s[r];
+    while (r - l + 1 - mFreq > k && l <= r) {
+      hm[s[l]]--;
+      mFreq--;
+      Object.entries(hm).forEach(([key, value]) => {
+        if (value >= mFreq) {
+          mFreq = value;
+          pNum = key;
+        }
+      });
+      l++;
+    }
+    sum = Math.max(r - l + 1, sum);
+    r++;
+  }
+  return sum;
+}
+
+console.log(
+  characterReplacement(
+    "KRSCDCSONAJNHLBMDQGIFCPEKPOHQIHLTDIQGEKLRLCQNBOHNDQGHJPNDQPERNFSSSRDEQLFPCCCARFMDLHADJADAGNNSBNCJQOF",
+    4
+  )
+);
+
+function minArrivalsToDiscard(arrivals, w, m) {
+  let l = 0,
+    r = 0,
+    hm = {},
+    dm = {},
+    dl = 0,
+    dis = 0,
+    len = 0;
+
+  while (r < arrivals.length) {
+    if (r - l + 1 > w + dl) {
+      if (hm[arrivals[l]]) {
+        hm[arrivals[l]]--;
+      }
+      if (dm[l]) {
+        dl--;
+        dm[l] = 0;
+      }
+      l++;
+    }
+    hm[arrivals[r]] = (hm[arrivals[r]] || 0) + 1;
+    if (hm[arrivals[r]] > m) {
+      dis++;
+      dl++;
+      dm[r] = 1;
+      hm[arrivals[r]]--;
+    }
+    r++;
+  }
+
+  return dis;
+}
+
+// console.log(
+//   minArrivalsToDiscard(
+//     [
+//       7, 3, 9, 9, 7, 3, 5, 9, 7, 2, 6, 10, 9, 7, 9, 1, 3, 6, 2, 4, 6, 2, 6, 8,
+//       4, 8, 2, 7, 5, 6,
+//     ],
+//     10,
+//     1
+//   )
+// );
+console.log(minArrivalsToDiscard([10, 4, 3, 6, 4, 5, 6, 1, 4], 7, 1));
+
+console.log("a".charCodeAt(), "z".charCodeAt());
+
+function firstUniqChar(s) {
+  let chars = new Array(26).fill(28),
+    i = 0;
+  while (i < s.length) {
+    let n = s[i].charCodeAt() - "a".charCodeAt();
+    if (chars[n] == 28) {
+      chars[n] = i;
+    } else {
+      chars[n] = 29;
+    }
+    i++;
+  }
+  let ans = 29;
+  chars.forEach((n) => {
+    ans = Math.min(n, ans);
+  });
+  return ans == 28 || ans == 29 ? -1 : ans;
+}
+console.log(firstUniqChar("leetcode"));
+
+// function lengthOfLongestSubstring(s: string): number {
+//   let max = 0,
+//     hm = {},
+//     l = 0,
+//     r = 0;
+//   while (r < s.length) {
+//     console.log(hm, l, r, s);
+
+//     if (hm[s[r]] !== undefined) {
+//       l = hm[s[r]];
+//       l++;
+//     }
+//     console.log(hm, l, r, s);
+//     hm[s[r]] = r;
+//     max = Math.max(max, r - l + 1);
+//     r++;
+//     console.log(hm, l, r, s);
+//   }
+//   return max;
+// }
+
+function isValid(s) {
+  let o = 0,
+    oC = 0,
+    oB = 0,
+    l = 0,
+    st = [];
+  while (l < s.length) {
+    if (s[l] == "(" || s[l] == "{" || s[l] == "[") {
+      st.push(s[l]);
+    } else {
+      if (st.length == 0) return false;
+      if (s[l] == st[st.length - 1]) {
+        st.pop();
+      }
+    }
+    l++;
+  }
+  return st.length == 0 ? true : false;
+}
+
+console.log(isValid("()"));
+
+function findKthLargest(nums, k) {
+  let l = 0,
+    r = nums.length - 1,
+    p = r;
+  while (true) {
+    p = r;
+
+    while (l < r) {
+      if (nums[l] > nums[l + 1]) {
+        [nums[l], nums[l + 1]] = [nums[l + 1], nums[l]];
+        l++;
+      } else {
+        [nums[r], nums[l + 1]] = [nums[l + 1], nums[r]];
+        r--;
+      }
+    }
+    if (l == nums.length - k) {
+      console.log("Done");
+      return nums[l];
+    } else if (l > nums.length - k) {
+      (l = 0), (r = l - 1);
+    } else {
+      (l = l + 1), (r = p);
+    }
+  }
+}
+
+console.log(findKthLargest([7, 6, 5, 4, 3, 2, 1], 2));
+
+

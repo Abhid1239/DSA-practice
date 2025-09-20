@@ -53,6 +53,7 @@ for (let i = 0; i < n * 2; i++) {
   // }
   console.log();
 }
+console.log("Yes");
 
 for (let i = 0; i < n; i++) {
   for (let j = i; j < n; j++) {
@@ -183,6 +184,122 @@ let t = 3;
 for (let i = 0; i < 2 * t - 1; i++) {
   for (let j = 0; j < 2 * t - 1; j++) {
     process.stdout.write(`${t - Math.min(i, j, t * 2 - 2 - i, t * 2 - 2 - j)}`);
+  }
+  console.log();
+}
+let num = 5;
+
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j < num; j++) {
+    process.stdout.write("* ");
+  }
+  console.log();
+}
+
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j <= i; j++) {
+    process.stdout.write("* ");
+  }
+  console.log();
+}
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j <= i; j++) {
+    process.stdout.write(`${j + 1}`);
+  }
+  console.log();
+}
+
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j <= i; j++) {
+    process.stdout.write(`${i + 1}`);
+  }
+  console.log();
+}
+
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j < num - i; j++) {
+    process.stdout.write(`* `);
+  }
+  console.log();
+}
+
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j < num - i; j++) {
+    process.stdout.write(`${j + 1}`);
+  }
+  console.log();
+}
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j < num - i; j++) {
+    process.stdout.write(" ");
+  }
+
+  for (let j = 0; j < 2 * i + 1; j++) {
+    process.stdout.write("*");
+  }
+  console.log();
+}
+
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j <= i; j++) {
+    process.stdout.write(" ");
+  }
+
+  for (let j = 0; j < 2 * (num - i - 1) + 1; j++) {
+    process.stdout.write("*");
+  }
+  console.log();
+}
+
+for (let i = 0; i < 2 * num - 1; i++) {
+  if (i < num) {
+    for (let j = 0; j <= i; j++) {
+      process.stdout.write("*");
+    }
+  } else {
+    for (let j = 0; j < 2 * num - i - 1; j++) {
+      process.stdout.write("*");
+    }
+  }
+  console.log();
+}
+
+let rev = 1;
+
+for (let i = 0; i < num; i++) {
+  let rev = i % 2 == 0 ? 1 : 0;
+  for (let j = 0; j <= i; j++) {
+    process.stdout.write(`${rev}`);
+    rev = rev == 1 ? 0 : 1;
+  }
+  console.log();
+}
+
+for (let i = 0; i < 2 * num - 1; i++) {
+  for (let j = 0; j <= i; j++) {
+    process.stdout.write(`${j + 1}`);
+  }
+  console.log();
+}
+
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j <= i; j++) {
+    process.stdout.write(`${j + 1}`);
+  }
+  for (let j = 0; j < 2 * (num - (i + 1)); j++) {
+    process.stdout.write(" ");
+  }
+  for (let j = 0; j <= i; j++) {
+    process.stdout.write(`${i - j + 1}`);
+  }
+  console.log();
+}
+
+let values = 1;
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j < i + 1; j++) {
+    process.stdout.write(`${values} `);
+    values += 1;
   }
   console.log();
 }
