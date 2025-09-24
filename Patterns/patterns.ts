@@ -303,3 +303,67 @@ for (let i = 0; i < num; i++) {
   }
   console.log();
 }
+
+function even(nums) {
+  let sum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] % 2 == 0) {
+      sum |= nums[i];
+    }
+  }
+  return sum;
+}
+
+console.log(even([1, 2, 3, 4, 5, 6]));
+console.log(even([7, 9, 11]));
+console.log(even([1, 8, 16]));
+
+function maxTotalValue(nums, k) {
+  let minV = Math.min(...nums),
+    maxV = Math.max(...nums);
+  return k * (maxV - minV);
+}
+
+console.log(maxTotalValue([1, 3, 2], 2));
+console.log(maxTotalValue([4, 2, 5, 1], 3));
+
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j < num - i - 1; j++) {
+    process.stdout.write(" ");
+  }
+  for (let j = 0; j < i + 1; j++) {
+    process.stdout.write(`${String.fromCharCode(j + 97)}`);
+  }
+  for (let j = i; j > 0; j--) {
+    process.stdout.write(`${String.fromCharCode(j + 96)}`);
+  }
+
+  console.log();
+}
+
+for (let i = 0; i < num; i++) {
+  for (let j = 0; j < num; j++) {
+    if (i == 0 || j == 0 || i == num - 1 || j == num - 1) {
+      process.stdout.write(`* `);
+    } else {
+      process.stdout.write("  ");
+    }
+  }
+  console.log();
+}
+
+num = 6;
+for (let i = 0; i < 2 * num - 1; i++) {
+  for (let j = 0; j < 2 * num - 1; j++) {
+    process.stdout.write(
+      `${
+        num -
+        Math.min(Math.min(i, j), Math.min(2 * num - 2 - i, 2 * num - 2 - j))
+      }`
+    );
+  }
+  console.log();
+}
+let arr = [10, 34, 32, 42, 4234, 232];
+console.log(arr.slice(2));
+console.log(String(55).length);
