@@ -367,3 +367,31 @@ for (let i = 0; i < 2 * num - 1; i++) {
 let arr = [10, 34, 32, 42, 4234, 232];
 console.log(arr.slice(2));
 console.log(String(55).length);
+
+function majorityFrequencyGroup(s) {
+  let chm = {};
+  s = s.split("");
+  s.forEach((c) => (chm[c] = (chm[c] || 0) + 1));
+  let fhm = {};
+  Object.keys(chm).forEach((c) => {
+    fhm[chm[c]] = [...(fhm[chm[c]] || []), c];
+  });
+  let count = 0,
+    ch = [],
+    f = 0;
+  Object.keys(fhm).forEach((v) => {
+    if (fhm[v].length > count) {
+      count = fhm[v].length;
+      ch = fhm[v];
+      f = Number(v);
+    } else if (fhm[v].length == count) {
+      if (Number(v) > f) {
+        count = fhm[v].length;
+        ch = fhm[v];
+        f = Number(v);
+      }
+    }
+  });
+  return ch.join("");
+}
+console.log(majorityFrequencyGroup("aaabbbccdddde"));
